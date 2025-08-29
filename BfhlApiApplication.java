@@ -12,7 +12,9 @@ public class BfhlApiApplication {
     private static final String ROLL_NUMBER = "22BCE9204";
 
     public static void main(String[] args) throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        String portStr = System.getenv("PORT");
+        int port = portStr != null ? Integer.parseInt(portStr) : 8080;
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/bfhl", new BfhlHandler());
         server.createContext("/", new HealthHandler());
         server.setExecutor(null);
