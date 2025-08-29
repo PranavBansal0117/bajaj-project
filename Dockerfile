@@ -1,5 +1,10 @@
-FROM openjdk:11-jre-slim 
-COPY *.java /app/ 
-RUN javac *.java 
-EXPOSE $PORT 
-CMD ["java", "BfhlApiApplication"] 
+FROM openjdk:11-jdk-slim
+
+COPY *.java /app/
+WORKDIR /app
+
+RUN javac *.java
+
+EXPOSE $PORT
+
+CMD ["java", "BfhlApiApplication"]
